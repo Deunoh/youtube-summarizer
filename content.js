@@ -1,28 +1,38 @@
-function addSummarizeBtn() {
-  if (document.getElementById('chatgpt-resume-btn')) return;
+function saveVideoUrl() {
+  const url = window.location.href;
+  if (url.includes("youtube.com/watch")) {
+    chrome.storage.local.set({ videoUrl: url }, () => {
+      console.log("URL de la vidéo stockée :", url);
+    });
+  }
+}
+
+function addGeminiButton() {
+  if (document.getElementById('gemini-resume-btn')) return;
 
   const btn = document.createElement('button');
-  btn.id = 'chatgpt-resume-btn';
-  btn.textContent = '📄 Résumer avec ChatGPT';
+  btn.id = 'gemini-resume-btn';
+  btn.textContent = '📄 Résumer avec Gemini';
   btn.style.position = 'fixed';
   btn.style.top = '100px';
   btn.style.right = '20px';
   btn.style.zIndex = '9999';
   btn.style.padding = '10px';
-  btn.style.background = '#10a37f';
+  btn.style.background = '#34A853';
   btn.style.color = '#fff';
   btn.style.border = 'none';
   btn.style.borderRadius = '5px';
   btn.style.cursor = 'pointer';
 
   btn.onclick = () => {
-    const url = window.location.href;
-    chrome.storage.local.set({ videoUrl: url }, () => {
-      chrome.runtime.sendMessage({ action: 'openPopup' });
-    });
+    alert("Ouvre l'icône de l'extension pour voir le résumé 😉");
   };
 
   document.body.appendChild(btn);
 }
 
-setTimeout(addSummarizeBtn, 2000);
+// Appel au chargement de la page
+setTimeout(() => {
+  saveVideoUrl();
+  addGeminiButton();
+}, 2000);

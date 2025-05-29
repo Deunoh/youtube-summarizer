@@ -1,13 +1,12 @@
 {
   "manifest_version": 3,
-  "name": "Résumé YouTube avec ChatGPT",
+  "name": "Résumé YouTube avec Gemini",
   "version": "1.0",
-  "description": "Génère un résumé d’une vidéo YouTube avec ChatGPT",
+  "description": "Génère un résumé d’une vidéo YouTube via l’API Gemini",
   "permissions": ["storage", "activeTab", "scripting"],
   "host_permissions": ["https://www.youtube.com/*"],
   "action": {
-    "default_popup": "popup.html",
-    "default_icon": "icon.png"
+    "default_popup": "popup.html"
   },
   "content_scripts": [
     {
